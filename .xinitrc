@@ -48,13 +48,4 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-twm &
-xclock -geometry 50x50-1+1 &
-xterm -geometry 80x50+494+51 &
-xterm -geometry 80x20+494-0 &
-exec xterm -geometry 80x66+0+0 -name login
-
-# exec xrandr --newmode 1280x1024_60.00 109.00 1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
-# exec xrandr --addmode DVI-I-0 1280x1024_60.00
-# exec xset s off -dpms
-#exec picom --experimental-backends --backend glx
+exec awesome

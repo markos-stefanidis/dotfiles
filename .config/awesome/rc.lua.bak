@@ -448,8 +448,8 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = 5, 
-                     border_color = white, 
+      properties = { border_width = 5,
+                     border_color = white,
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,

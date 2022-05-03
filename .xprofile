@@ -3,4 +3,3 @@ xrandr --newmode "1280x1024_60.00" 109.00 1280 1368 1497 1712  1024 1027 1034 10
 xrandr --addmode DVI-I-0 "1280x1024_60.00"
 xrandr --output DVI-I-0 --mode "1280x1024_60.00" --left-of HDMI-0
 xset s off -dpms
-nitrogen --restore
