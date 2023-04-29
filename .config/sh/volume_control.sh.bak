@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+	-u)
+		amixer -c 0 sset Master,0 2%+
+		;;
+	-d)
+		amixer -c 0 sset Master,0 2%-
+		;;
+esac
+
+volume_level=$(amixer -c 0 get Master,0 | awk 'END {print $4}' | cut -d"[" -f2 | cut -d"%" -f1)
+echo $volume_level
+dunstify "Volume change" -h int:value:$volume_level -r 9503 -u normal -t 1000
