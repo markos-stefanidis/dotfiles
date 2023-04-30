@@ -1,6 +1,8 @@
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
+local beautiful = require("beautiful")
+
 require("awful.autofocus")
 
 -- Check if mouse clicks on window border
@@ -43,16 +45,16 @@ local clientbuttons = gears.table.join(
 -- These functions enable title bars only when the window is floating
 
 -- -- This is for floating windows in tiling layout
-client.connect_signal("list", function(c)
+client.connect_signal("focus", function(c)
 	if c.floating or c.first_tag.layout.name == "floating" then
 		awful.titlebar.show(c)
-      c.border_color = '#00FF00'
+      c.border_color = beautiful.green
       c.height = 800
       c.width = 1000
       c.placement = awful.placement.no_overlap
 	else
 		awful.titlebar.hide(c)
-      c.border_color = '#FF0000'
+    c.border_color = beautiful.light_yellow
 	end
 end)
 
@@ -62,16 +64,18 @@ tag.connect_signal("property::layout", function(t)
 	for k,c in pairs(clients) do
 		if c.floating or c.first_tag.layout.name == "floating" then
 			awful.titlebar.show(c)
-         c.border_color = '#00FF00'
-         c.height = 800;
-         c.width = 1000;
-         c.placement = awful.placement.no_overlap
+        c.border_color = beautiful.green
+        c.height = 800;
+        c.width = 1000;
+        c.placement = awful.placement.no_overlap
 		else
 			awful.titlebar.hide(c)
-         c.border_color = '#FF0000'
+        c.border_color = beautiful.light_yellow
 		end
 	end
 end)
+
+client.connect_signal("unfocus", function(c) c.border_color = '#000000' end)
 
 --Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
@@ -129,7 +133,7 @@ awful.rules.rules = {
    -- All clients will match this rule.
    { rule = { },
       properties = {
-         border_width = 2,
+         border_width = beautiful.border_width,
          focus = awful.client.focus.filter,
          raise = true,
          keys = clientkeys,

@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
+local beautiful = require("beautiful")
 
 local calendar_widget = {}
 
@@ -25,14 +26,18 @@ local function worker(user_args)
   }
 
   styles.normal = {
-    bg_color = "#FF0000",
     opacity = 0.0,
     markup = function(t) return t end,
     shape = rounded_shape(4)
   }
 
   styles.focus = {
-    bg_color = "#FF0000",
+    markup = function(t) return '<b>' .. t .. '</b>' end,
+    opacity = 0.0,
+    shape = rounded_shape(4)
+  }
+
+  styles.weekend = {
     markup = function(t) return '<b>' .. t .. '</b>' end,
     opacity = 0.0,
     shape = rounded_shape(4)
@@ -40,8 +45,6 @@ local function worker(user_args)
 
   styles.header = {
     markup = function(t) return '<b>' .. t .. '</b>' end,
-    border_width = 2,
-    fg_color = "#00FF00"
   }
 
   styles.weekday = {
@@ -51,12 +54,6 @@ local function worker(user_args)
   local function decorate_cell(widget, flag, date)
     if flag == 'monthheader' and not styles.monthheader then
       flag = 'header'
-    end
-
-    if flag == 'header' then
-      def_fg = "#00FF00"
-    else
-      def_fg = "#FFFFFF"
     end
 
     -- highlight only today's day
@@ -85,9 +82,9 @@ local function worker(user_args)
         shape = props.shape,
         -- shape_border_color = props.border_color or '#000000',
         shape_border_width = props.border_width or 0,
-        fg = "#FFFFFF",
-        border_color = def_fg,
-        bg = "#00FF0000",
+        fg = beautiful.light_white,
+        border_color = beautiful.light_white,
+        bg = "#00000000",
         widget = wibox.container.background
     }
     return ret
@@ -109,9 +106,9 @@ local function worker(user_args)
     shape = rounded_shape(radius),
     offset = { y = 5 },
     border_width = 2,
-    border_color = "#FFFFFF",
+    border_color = beautiful.light_white,
     opacity = 0.7,
-    bg = "#000000",
+    bg = beautiful.background,
     widget = cal
   }
 

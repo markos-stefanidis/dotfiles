@@ -2,6 +2,7 @@ local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local cal   = require("ui.widgets.calendar")
+local beautiful = require("beautiful")
 
 local bar_font = "UbuntuMono Nerd Font Bold 15"
 
@@ -27,8 +28,8 @@ local keyboard_layout = wibox.widget {
 -- Create audio widget
 -------------------------
 local audio_widget = wibox.widget{
-  font = bar_font,
-  fg = "#FFFFFF",
+  font = beautiful.bar_font,
+  fg = beautiful.fg_urgent,
   widget = wibox.widget.textbox
 }
 
@@ -40,8 +41,6 @@ audio_widget:connect_signal("button::press", function(c)
   awful.spawn("/home/markos/.config/sh/sound_control.sh")
 end)
 
--------------------------
--------------------------
 
 -------------------------
 -- Create callendar widget
@@ -49,8 +48,8 @@ end)
 
 -- Create a textclock widget
 local calendar_widget = wibox.widget{
-  font = bar_font,
-  fg = "#FF0000",
+  font = beautiful.bar_font,
+  fg_color = "#FF0000",
   widget = wibox.widget.textclock('|  %a %b %d', 15)
 }
 
@@ -130,11 +129,11 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = taglist_buttons,
     style   = {
       font = bar_font,
-      bg_occupied = '#000000',
-      bg_focus    = '#000000',
-      fg_occupied = '#7F7F7F',
-      fg_empty    = '#3F3F3F',
-      fg_focus    = '#FFFFFF',
+      bg_occupied = beautiful.background,
+      bg_focus    = beautiful.background,
+      fg_occupied = beautiful.fg_occupied,
+      fg_empty    = beautiful.fg_empty,
+      fg_focus    = beautiful.fg_focus,
     }
   }
 
@@ -145,14 +144,14 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = tasklist_buttons,
     style   = {
       font = bar_font,
-      bg_normal = '#000000',
-      bg_focus  = '#000000',
-      bg_minimize = '#000000',
-      bg_urgent = '#000000',
-      fg_normal = '#7F7F7F',
-      fg_focus  = '#FFFFFF',
-      fg_minimize = '#3F3F3F',
-      fg_urgent = '#FF0000'
+      bg_normal = beautiful.bg_normal ,
+      bg_focus  = beautiful.bg_focus  ,
+      bg_minimize = beautiful.bg_minimize ,
+      bg_urgent = beautiful.bg_urgent ,
+      fg_normal = beautiful.fg_normal ,
+      fg_focus  = beautiful.fg_focus  ,
+      fg_minimize = beautiful.fg_minimize ,
+      fg_urgent = beautiful.fg_urgent
     }
   }
 
@@ -162,7 +161,8 @@ awful.screen.connect_for_each_screen(function(s)
     ontop = false,
     screen = s,
     height = 23,
-    bg = '#000000',
+    bg = beautiful.background,
+    fg = beautiful.foreground,
     opacity = 0.8
   })
 

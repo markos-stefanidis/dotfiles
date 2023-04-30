@@ -53,8 +53,8 @@ theme.fg_occupied = '#7F7F7F'
 theme.fg_empty    = '#3F3F3F'
 theme.fg_focus    = '#FFFFFF'
 
-theme.useless_gap         = dpi(0)
-theme.border_width        = dpi(1)
+theme.useless_gap         = dpi(4)
+theme.border_width        = dpi(3)
 theme.border_normal       = "#000000"
 theme.border_focus        = "#535d6c"
 theme.border_marked       = "#91231c"
