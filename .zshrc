@@ -17,10 +17,10 @@ alias vim="nvim"
 alias config="/usr/bin/git --git-dir=$HOME/repos/dotfiles/ --work-tree=$HOME"
 
 # Plugins
-source /home/markos/zshplugins/zsh-autosuggestions.zsh
 source ~/.zplug/init.zsh
-source ~/.zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
-zplug "olivierverdier/zsh-git-prompt"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug load 
 
 # History
 HISTFILE=~/.bash_history
@@ -29,13 +29,12 @@ SAVEHIST=10000
 setopt appendhistory
 
 # Configuring Prompt
-PS1='%F{green}%~ $(git_super_status)'$'\n''%F{blue}﬌ %f '
+PS1='%F{green}%~'$'\n''%F{blue}󰘍 %f '
 precmd() { print "" }
 
 # Flex on Ubuntu users
 #neofetch
 
 export QSYS_ROOTDIR="/home/markos/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
-source /home/markos/zshplugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/markos/zshplugins/zsh-syntax-highlighting/colors.zsh
+
 
