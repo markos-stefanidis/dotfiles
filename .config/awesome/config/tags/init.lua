@@ -14,10 +14,10 @@ awful.layout.layouts = {
 local tags = sharedtags({
    {name = " ", layout = awful.layout.layouts[1]},
    {name = " ", layout = awful.layout.layouts[1]},
-   {name = "阮 ", layout = awful.layout.layouts[1]},
+   {name = " ", layout = awful.layout.layouts[1]},
    {name = " ", layout = awful.layout.layouts[1]},
-   {name = " ", layout = awful.layout.layouts[1]},
-   {name = "ﲋ", layout = awful.layout.layouts[1]},
+   {name = "󰞍 ", layout = awful.layout.layouts[1]},
+   {name = "󰊗 ", layout = awful.layout.layouts[1]},
    {name = " ", layout = awful.layout.layouts[1]}
 })
 

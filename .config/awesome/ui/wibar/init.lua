@@ -28,17 +28,29 @@ local keyboard_layout = wibox.widget {
 -- Create audio widget
 -------------------------
 local audio_widget = wibox.widget{
-  font = beautiful.bar_font,
-  fg = beautiful.fg_urgent,
-  widget = wibox.widget.textbox
+  widget = wibox.widget.textbox,
+  headphones = 1,
+  markup = " "
 }
 
-awful.spawn.easy_async("/home/markos/.config/sh/sound_control.sh", function(stdout)
-  audio_widget:set_text(stdout)
-end)
-
-audio_widget:connect_signal("button::press", function(c)
-  awful.spawn("/home/markos/.config/sh/sound_control.sh")
+audio_widget:connect_signal("button::press", function()
+  awful.spawn.easy_async("/home/markos/.config/sh/sound_control.sh", function(stdout)
+    local whatisgoingon = (stdout == "1")
+    -- if audio_widget.headphones == 1 then
+    --   audio_widget.text = " "
+    --   awful.spawn('dunstify "That is stdout" 1 ')
+    --   audio_widget.headphones = 2
+    -- else
+    --   awful.spawn('dunstify "That is stdout" 2 ')
+    --   audio_widget.text = "墳 "
+    --   audio_widget.headphones = 1
+    -- end
+    if whatisgoingon then
+      awful.spawn('dunstify "That is stdout" ' .. stdout)
+    else
+      awful.spawn('dunstify "That is not stdout" ' .. stdout)
+    end
+  end)
 end)
 
 
@@ -50,7 +62,7 @@ end)
 local calendar_widget = wibox.widget{
   font = beautiful.bar_font,
   fg_color = "#FF0000",
-  widget = wibox.widget.textclock('|  %a %b %d', 15)
+  widget = wibox.widget.textclock('|   %a %b %d', 15)
 }
 
 local cw = cal()
@@ -66,7 +78,7 @@ calendar_widget:connect_signal("button::press",
 local textclock = wibox.widget{
   font = bar_font,
   fg = "#FF0000",
-  widget = wibox.widget.textclock(' |  %H:%M ', 15)
+  widget = wibox.widget.textclock(' | 󱑏 %H:%M ', 15)
 }
 
 -- Create taglist widget
@@ -155,16 +167,31 @@ awful.screen.connect_for_each_screen(function(s)
     }
   }
 
+
+  local ot -- On top
+  local function wibar_ontop()
+    s.mywibox.ontop = (_G.mouse.coords().y < 23)
+  end
+
   -- Create the wibox
   s.mywibox = awful.wibar({
     position = "top",
-    ontop = false,
     screen = s,
     height = 23,
     bg = beautiful.background,
     fg = beautiful.foreground,
     opacity = 0.8
   })
+
+
+  -- Create timer to check mouse
+  s.mouse_timer = gears.timer({
+    timeout = 0.25,
+    callback = wibar_ontop,
+    autostart = true
+  })
+
+
 
 
   -- Add widgets to the wibox

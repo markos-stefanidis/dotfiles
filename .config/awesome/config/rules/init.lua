@@ -45,13 +45,13 @@ local clientbuttons = gears.table.join(
 -- These functions enable title bars only when the window is floating
 
 -- -- This is for floating windows in tiling layout
-client.connect_signal("focus", function(c)
+client.connect_signal("list", function(c)
 	if c.floating or c.first_tag.layout.name == "floating" then
 		awful.titlebar.show(c)
-      c.border_color = beautiful.green
-      c.height = 800
-      c.width = 1000
-      c.placement = awful.placement.no_overlap
+    c.border_color = beautiful.green
+    c.height = 800
+    c.width = 1000
+    c.placement = awful.placement.no_overlap
 	else
 		awful.titlebar.hide(c)
     c.border_color = beautiful.light_yellow
@@ -73,6 +73,14 @@ tag.connect_signal("property::layout", function(t)
         c.border_color = beautiful.light_yellow
 		end
 	end
+end)
+
+client.connect_signal("focus", function(c)
+   if  c.first_tag.layout.name == "floating" then
+      c.border_color = beautiful.green
+   else
+      c.border_color = beautiful.light_yellow
+   end
 end)
 
 client.connect_signal("unfocus", function(c) c.border_color = '#000000' end)
