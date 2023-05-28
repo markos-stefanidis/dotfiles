@@ -168,10 +168,9 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
 
-  local ot -- On top
-  local function wibar_ontop()
-    s.mywibox.ontop = (_G.mouse.coords().y < 23)
-  end
+  -- local function wibar_ontop()
+  --   s.mywibox.ontop = (_G.mouse.coords().y < 23)
+  -- end
 
   -- Create the wibox
   s.mywibox = awful.wibar({
@@ -185,11 +184,11 @@ awful.screen.connect_for_each_screen(function(s)
 
 
   -- Create timer to check mouse
-  s.mouse_timer = gears.timer({
-    timeout = 0.25,
-    callback = wibar_ontop,
-    autostart = true
-  })
+  -- s.mouse_timer = gears.timer({
+  --   timeout = 0.25,
+  --   callback = wibar_ontop,
+  --   autostart = true
+  -- })
 
 
 

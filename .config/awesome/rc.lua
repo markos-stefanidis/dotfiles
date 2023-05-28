@@ -18,8 +18,8 @@ local menubar = require("menubar")
 
 beautiful.init("/home/markos/.config/awesome/ui/theme/init.lua")
 require("config.keybindings")
-require("config.rules")
 require("config.tags")
+-- require("config.rules")
 require("ui.wibar")
 
 -- Set keys
