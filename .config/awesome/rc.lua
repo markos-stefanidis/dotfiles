@@ -22,6 +22,7 @@ require("config.tags")
 -- require("config.rules")
 require("ui.wibar")
 
+
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -40,9 +41,9 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Autostart
-awful.spawn.with_shell("~/.config/sh/startup.sh")
--- awful.spawn.with_shell("~/.config/sh/todo.sh")
-awful.spawn.with_shell("mserver")
+-- awful.spawn.with_shell("~/.config/sh/startup.sh")
+awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("dunst")
 
 --Menu and hotkeys fonts and size
 beautiful.hotkeys_font = "UbuntuMono Nerd Font 10"

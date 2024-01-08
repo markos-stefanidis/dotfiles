@@ -141,9 +141,23 @@ local function worker(user_args)
       popup:set_widget(cal)
       popup.visible = not popup.visible
     else
-      awful.placement.top_right(popup, { margins = { top = 30, right = 10 }, parent = awful.screen.focused() })
+      awful.placement.top_right(popup, { margins = { top = 40, right = 10 }, parent = awful.screen.focused() })
       popup.visible = true
     end
+  end
+
+  function calendar_widget.show()
+    awful.placement.top_right(popup, { margins = { top = 40, right = 10 }, parent = awful.screen.focused() })
+    popup.visible = true
+  end
+
+  function calendar_widget.hide()
+    -- to faster render the calendar refresh it and just hide
+    cal:set_date(nil) -- the new date is not set without removing the old one
+    cal:set_date(os.date('*t'))
+    popup:set_widget(nil) -- just in case
+    popup:set_widget(cal)
+    popup.visible = false
   end
 
   return calendar_widget

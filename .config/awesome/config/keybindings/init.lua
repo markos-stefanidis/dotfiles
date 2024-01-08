@@ -3,6 +3,8 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("config.keybindings.keycodes")
 
+local max = false
+
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "vim"
@@ -136,7 +138,8 @@ awful.key({ modkey, "Shift"  }, key_C,      function (c) c:kill()
    awful.spawn('/home/markos/.config/bin/window_notify.sh')
 end,
 {description = "close", group = "client"}),
-awful.key({ modkey, key_Control_Left }, key_Space,  awful.client.floating.toggle                     ,
+
+awful.key({ modkey }, key_A,  awful.client.floating.toggle                     ,
 {description = "toggle floating", group = "client"}),
 awful.key({ modkey, "Control" }, key_Enter, function (c) c:swap(awful.client.getmaster()) end,
 {description = "move to master", group = "client"}),
@@ -152,23 +155,17 @@ function (c)
    awful.spawn('/home/markos/.config/bin/window_notify.sh')
 end ,
 {description = "minimize", group = "client"}),
+
 awful.key({ modkey,           }, key_M,
-function (c)
-   c.maximized = not c.maximized
-   c:raise()
-end ,
-{description = "(un)maximize", group = "client"}),
-awful.key({ modkey, "Control" }, key_M,
-function (c)
-   c.maximized_vertical = not c.maximized_vertical
-   c:raise()
-end ,
-{description = "(un)maximize vertically", group = "client"}),
-awful.key({ modkey, "Shift"   }, key_M,
-function (c)
-   c.maximized_horizontal = not c.maximized_horizontal
-   c:raise()
-end ,
-{description = "(un)maximize horizontally", group = "client"})
+function ()
+  if (max) then
+    awful.layout.set(awful.layout.suit.tile)
+    max = false
+  else
+    awful.layout.set(awful.layout.suit.max)
+    max = true
+  end
+end,
+{description = "(un)maximize", group = "client"})
 )
 

@@ -16,42 +16,40 @@ theme.font                = theme.font_name .. ' ' .. theme.font_size
 
 theme.bar_font            = theme.font_name .. ' Bold ' .. theme.font_size
 
-theme.background          = '#000000'
-theme.foreground          = '#c5c8c6'
+theme.opacity             = 1
 
-theme.black               = '#282a2e'
-theme.red                 = '#6D6373'
-theme.green               = '#3D6B51'
-theme.yellow              = '#e1df71'
-theme.blue                = '#2669b9'
-theme.magenta             = '#464464'
-theme.cyan                = '#6bb1de'
-theme.white               = '#707880'
+theme.background          = '#1E2326'
+theme.foreground          = '#D3C6AA'
 
-theme.light_black         = '#59696F'
-theme.light_red           = '#675550'
-theme.light_green         = '#62a86e'
-theme.light_yellow        = '#ddba57'
-theme.light_blue          = '#398acd'
-theme.light_magenta       = '#51495a'
-theme.light_cyan          = '#3ee0f4'
-theme.light_white         = '#FFFFFF'
+theme.black               = '#293136'
+theme.red                 = '#E67E80'
+theme.green               = '#A7C080'
+theme.yellow              = '#DBBC7F'
+theme.blue                = '#7FBBB3'
+theme.magenta             = '#D699B6'
+theme.cyan                = '#83C092'
+theme.white               = '#D3C6AA'
+
+theme.light_black         = '#293136'
+theme.light_red           = '#E67E80'
+theme.light_green         = '#A7C080'
+theme.light_yellow        = '#DBBC7F'
+theme.light_blue          = '#7FBBB3'
+theme.light_magenta       = '#D699B6'
+theme.light_cyan          = '#83C092'
+theme.light_white         = '#D3C6AA'
 
 theme.bg_normal           = theme.background
-theme.bg_focus            = theme.background
+theme.bg_focus            = theme.black
 theme.bg_urgent           = theme.background
 theme.bg_minimize         = theme.background
 theme.bg_systray          = theme.background
 
 theme.fg_normal           = theme.foreground
-theme.fg_focus            = "#FFFFFF"
+theme.fg_focus            = theme.background
 theme.fg_urgent           = theme.red
 theme.fg_minimize         = theme.light_black
-
--- Tag colors
-theme.fg_occupied = '#7F7F7F'
-theme.fg_empty    = '#3F3F3F'
-theme.fg_focus    = '#FFFFFF'
+theme.fg_occupied         = theme.white
 
 theme.useless_gap         = dpi(4)
 theme.border_width        = dpi(3)
@@ -129,7 +127,7 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 
 theme.titlebar_font = "UbuntuMono Nerd Font 15"
 
-theme.wallpaper = themes_path.."default/background.png"
+theme.wallpaper = "/home/markos/Downloads/firewatch-forest-wallpaper-59157-60941-hd-wallpapers.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -148,6 +146,10 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+
+theme.layout_tile_icon = " "
+theme.layout_max_icon  = " "
+theme.layout_floating_icon  = "󱂬 "
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
