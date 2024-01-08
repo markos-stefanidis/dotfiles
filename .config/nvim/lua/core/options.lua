@@ -49,5 +49,7 @@ vim.opt.scrolloff = 8
 -- Global Status Line
 vim.opt.laststatus = 3
 
+vim.opt.showmode = false
+
 -- Word Settings
 -- vim.opt.iskeyword:remove("_")

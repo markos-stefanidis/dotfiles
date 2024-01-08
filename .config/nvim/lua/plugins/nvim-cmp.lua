@@ -16,8 +16,57 @@ return {
 
     local lspkind = require('lspkind')
 
+    local kind_mapper = {10, -- Text
+                          2, -- Method
+                          3, -- Function
+                          4, -- Constructor
+                          5, -- Field
+                          6, -- Variable
+                          7, -- Class
+                          8, -- Interface
+                          9, -- Module
+                          1, -- Property
+                         11, -- Unit
+                         12, -- Value
+                         13, -- Enum
+                         14, -- Keyword
+                         15, -- Snippet
+                         16, -- Color
+                         17, -- File
+                         18, -- Reference
+                         19, -- Folder
+                         20, -- EnumMember
+                         21, -- Constant
+                         22, -- Struct
+                         23, -- Event
+                         24, -- Operator
+                         25} -- TypeParameter
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require('luasnip.loaders.from_vscode').lazy_load()
+
+    -- if vim.bo.filetype == 'systemverilog' then
+    --   cmp.event:on('complete_done', function()
+    --     local entry = cmp.get_active_entry()
+    --     if (entry ~= nil) then
+    --       local kind = entry:get_kind()
+    --       if (kind == 9) then
+    --         local lsp_params = vim.lsp.util.make_position_params(0, self.client.offset_encoding)
+    --         lsp_params.context = {}
+    --         lsp_params.context.triggerKind = params.completion_context.triggerKind
+    --         lsp_params.context.triggerCharacter = params.completion_context.triggerCharacter
+    --
+    --         local module_name = entry:get_label()
+    --         local some_file = io.open('./test', 'w+b')
+    --         if (some_file ~= nil) then
+    --           some_file:write('  - ' .. vim.inspect(module_name) .. '\n')
+    --           some_file:close()
+    --         end
+    --       end
+    --
+    --     end
+    --   end)
+    -- end
 
     cmp.setup({
       completion = {
@@ -28,6 +77,18 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end
+      },
+
+      sorting = {
+        comparators = {
+          function (entry1, entry2)
+            local kind1 = kind_mapper[entry1:get_kind()]
+            local kind2 = kind_mapper[entry2:get_kind()]
+            if kind1 < kind2 then
+              return true
+            end
+          end,
+        }
       },
 
       mapping = cmp.mapping.preset.insert({

@@ -19,7 +19,7 @@ local plugins = {
 }
 
 local opts = {
-
+  change_detection = { enabled = false }
 }
 
 require("lazy").setup(plugins, opts)

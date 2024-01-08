@@ -19,6 +19,11 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
+        'lua_ls',
+        'clangd',
+        'cssls',
+        'pyright',
+        'svlangserver'
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
