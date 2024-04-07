@@ -10,6 +10,30 @@ return {
     local cmp_nvim_lsp = require('cmp_nvim_lsp')
     local opts = { noremap = true, silent = true }
 
+    vim.diagnostic.config({
+      underline = true,
+      virtual_text = false, -- Turn off inline diagnostics
+      float = {
+        border = {
+            {"╔", "FloatBorder"},
+            {"═", "FloatBorder"},
+            {"╗", "FloatBorder"},
+            {"║", "FloatBorder"},
+            {"╝", "FloatBorder"},
+            {"═", "FloatBorder"},
+            {"╚", "FloatBorder"},
+            {"║", "FloatBorder"}
+        },
+        source = "always",
+        update_in_insert = true,
+        severity_sort = true,
+      },
+    })
+
+    vim.o.updatetime = 250
+    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})]]
+    vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
     local file_exists = function(file)
       local f = io.open(file, 'rb')
       if f then f:close() end
@@ -138,26 +162,47 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 
-    -- lspconfig['verible'].setup({
+
+    -- lspconfig['hdl_checker'].setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   root_dir = root_dir
     -- })
 
+
+
+    lspconfig['verible'].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      root_dir = root_dir
+    })
+
     -- lspconfig['svlangserver'].setup({
-    --   on_init = function(client)
-    --     client.config.settings.systemverlog = {
-    --       disableCompletionProvider = true,
-    --       disableLinting = true
-    --     }
-    --   end,
     --   capabilities = capabilities,
-    --   handlers = {
-    --     ['textDocument/publishDiagnostics'] = function() end
-    --   },
     --   on_attach = on_attach,
     --   root_dir = root_dir
     -- })
+
+    -- lspconfig['svls'].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   root_dir = root_dir
+    -- })
+
+    lspconfig['svlangserver'].setup({
+      on_init = function(client)
+        client.config.settings.systemverlog = {
+          disableCompletionProvider = true,
+          disableLinting = true
+        }
+      end,
+      capabilities = capabilities,
+      handlers = {
+        ['textDocument/publishDiagnostics'] = function() end
+      },
+      on_attach = on_attach,
+      root_dir = root_dir
+    })
 
     -- lspconfig['vhdl_ls'].setup({
     --   capabilities = capabilities,
@@ -165,15 +210,15 @@ return {
     --   root_dir = root_dir
     -- })
 
-    -- lspconfig['veridian'].setup({
-    --   -- on_init = veridian_src,
-    --   capabilities = capabilities,
-    --   handlers = {
-    --     ['textDocument/hover'] = function() end
-    --   },
-    --   on_attach = on_attach,
-    --   root_dir = root_dir
-    -- })
+    lspconfig['veridian'].setup({
+      -- on_init = veridian_src,
+      capabilities = capabilities,
+      handlers = {
+        ['textDocument/hover'] = function() end
+      },
+      on_attach = on_attach,
+      root_dir = root_dir
+    })
 
     lspconfig['clangd'].setup({
       capabilities = capabilities,
@@ -210,5 +255,7 @@ return {
         }
       }
     })
+
+
   end
 }
