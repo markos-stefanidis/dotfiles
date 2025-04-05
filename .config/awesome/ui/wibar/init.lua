@@ -140,13 +140,30 @@ local time_bar = wibox.widget{
   bg = beautiful.fg_normal,
   colors = {beautiful.green},
   forced_width  = 28,
-  max_value = 400,
+  max_value = 40,
   min_value = 0,
   widget = wibox.container.arcchart
 }
 
 local update_uptime = function(uptime)
-  time_bar.value = uptime
+  local alert = false
+  if (uptime < 40) then
+    time_bar.value = uptime
+  elseif (uptime < 50) then
+    time_bar.max_value = 50
+    time_bar.min_value = 40
+    time_bar.bg = beautiful.green
+    time_bar.colors = {beautiful.red}
+    time_bar.value = uptime
+  else
+    if (alert) then
+      time_bar.colors = {beautiful.green}
+      alert = false
+    else
+      time_bar.colors = {beautiful.red}
+      alert = true
+    end
+  end
 end
 
 awful.widget.watch(uptime_cmd, update_int, function(_, stdout)

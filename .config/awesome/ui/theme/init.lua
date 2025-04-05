@@ -10,13 +10,13 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
+theme.opacity             = 1
+
 theme.font_name           = "UbuntuMono Nerd Font"
 theme.font_size           = "15"
 theme.font                = theme.font_name .. ' ' .. theme.font_size
 
 theme.bar_font            = theme.font_name .. ' Bold ' .. theme.font_size
-
-theme.opacity             = 1
 
 theme.background          = '#1E2326'
 theme.foreground          = '#D3C6AA'
@@ -51,7 +51,7 @@ theme.fg_urgent           = theme.red
 theme.fg_minimize         = theme.light_black
 theme.fg_occupied         = theme.white
 
-theme.useless_gap         = dpi(4)
+theme.useless_gap         = dpi(6)
 theme.border_width        = dpi(3)
 theme.border_normal       = "#000000"
 theme.border_focus        = "#535d6c"

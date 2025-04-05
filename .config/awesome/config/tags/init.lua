@@ -35,13 +35,22 @@ for i = 1, 9 do
         if tag then
           local old_screen = tag.screen
           local old_tag = screen.selected_tag
-          sharedtags.viewonly(old_tag, old_screen)
-          sharedtags.viewonly(tag, screen)
-        else
-          local old_screen = tag.screen
-          local old_tag = screen.selected_tag
-          sharedtags.viewonly(old_tag, old_screen)
-          sharedtags.viewonly(tag, screen)
+          if (screen == old_screen) then
+            sharedtags.viewonly(tag, screen)
+          elseif (old_screen.selected_tag == tag) then
+            sharedtags.viewonly(old_tag, old_screen)
+            sharedtags.viewonly(tag, screen)
+          else
+            local old_screen_focus = old_screen.selected_tag
+            old_tag.selected = false
+            old_tag.screen = old_screen
+            sharedtags.viewonly(tag, screen)
+          end
+        -- else
+        --   local old_screen = tag.screen
+        --   local old_tag = screen.selected_tag
+        --   sharedtags.viewonly(old_tag, old_screen)
+        --   sharedtags.viewonly(tag, screen)
         end
       end,
       {description = "view tag #"..i, group = "tag"}),

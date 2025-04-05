@@ -9,17 +9,17 @@ vim.keymap.set('i', 'jK', '<ESC>')
 vim.keymap.set('i', 'JK', '<ESC>')
 
 -- Navigation
-if vim.fn.exists('g:loaded_tmux_navigator') == 1 then
-  vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>')
-  vim.keymap.set('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>')
-  vim.keymap.set('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>')
-  vim.keymap.set('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>')
-else
-  vim.keymap.set('n', '<C-l>', '<C-w>l')
-  vim.keymap.set('n', '<C-k>', '<C-w>k')
-  vim.keymap.set('n', '<C-j>', '<C-w>j')
-  vim.keymap.set('n', '<C-h>', '<C-w>h')
-end
+-- if vim.fn.exists('g:loaded_tmux_navigator') == 1 then
+--   vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>')
+--   vim.keymap.set('n', '<C-k>', '<cmd>TmuxNavigateUp<CR>')
+--   vim.keymap.set('n', '<C-j>', '<cmd>TmuxNavigateDown<CR>')
+--   vim.keymap.set('n', '<C-h>', '<cmd>TmuxNavigateLeft<CR>')
+-- else
+--   vim.keymap.set('n', '<C-l>', '<C-w>l')
+--   vim.keymap.set('n', '<C-k>', '<C-w>k')
+--   vim.keymap.set('n', '<C-j>', '<C-w>j')
+--   vim.keymap.set('n', '<C-h>', '<C-w>h')
+-- end
 
 -- VC Diff
 vim.keymap.set('n', '<leader>vd', function()

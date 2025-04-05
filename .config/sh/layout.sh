@@ -3,7 +3,7 @@
 current_layout=$(setxkbmap -query | awk 'END {print$2}')
 case $current_layout in
 us)
-	setxkbmap gr
+	setxkbmap gr,us
 	;;
 gr)
 	setxkbmap us

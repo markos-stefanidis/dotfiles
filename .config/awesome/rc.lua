@@ -43,6 +43,7 @@ end)
 -- Autostart
 -- awful.spawn.with_shell("~/.config/sh/startup.sh")
 awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("blueman-applet")
 awful.spawn.with_shell("dunst")
 
 --Menu and hotkeys fonts and size

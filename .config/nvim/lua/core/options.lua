@@ -53,3 +53,4 @@ vim.opt.showmode = false
 
 -- Word Settings
 -- vim.opt.iskeyword:remove("_")
+--

@@ -1,0 +1,41 @@
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "UbuntuMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "UbuntuMono Nerd Font"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "UbuntuMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "UbuntuMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = true
+
+[window]
+decorations = "none"
+opacity = 0.95
+
+[window.padding]
+x = 20
+y = 20
+
+[general]
+import = ["/home/markos/.config/alacritty/everforest.toml"]

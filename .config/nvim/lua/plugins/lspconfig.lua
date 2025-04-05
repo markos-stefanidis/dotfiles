@@ -31,8 +31,10 @@ return {
     })
 
     vim.o.updatetime = 250
-    vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})]]
+    -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})]]
     vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+    -- opts.desc = 'Open Diagnostics Window'
+    vim.keymap.set('n', '<leader>d', function() vim.diagnostic.open_float(nil, {focus=false, max_width = 80}) end)
 
     local file_exists = function(file)
       local f = io.open(file, 'rb')
@@ -69,7 +71,13 @@ return {
         os.remove(veridian_path)
       end
       print (veridian_path)
+
       local veridian_file = io.open(veridian_path, 'w+b')
+
+      if (veridian_file == nil) then
+        return -1
+      end
+
       veridian_file:write('include_dirs:\n')
       for _,v in ipairs(dir_list) do
         veridian_file:write('  - ' .. v .. '\n')
@@ -144,7 +152,7 @@ return {
 
     local root_dir = function()
       local cur_dir = vim.loop.cwd()
-      while cur_dir ~= "/home/markos" do
+      while cur_dir ~= "/home/markos" and cur_dir ~= "/" do
         if vim.fn.isdirectory(cur_dir .. "/.git") == 1 then
           return cur_dir
         end
@@ -170,12 +178,18 @@ return {
     -- })
 
 
+    -- lspconfig['veridian'].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   cmd = { 'veridian' },
+    --   root_dir = root_dir
+    -- })
 
-    lspconfig['verible'].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      root_dir = root_dir
-    })
+    -- lspconfig['verible'].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   root_dir = root_dir
+    -- })
 
     -- lspconfig['svlangserver'].setup({
     --   capabilities = capabilities,
@@ -188,6 +202,12 @@ return {
     --   on_attach = on_attach,
     --   root_dir = root_dir
     -- })
+
+    lspconfig['yamlls'].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      root_dir = root_dir
+    })
 
     lspconfig['svlangserver'].setup({
       on_init = function(client)
