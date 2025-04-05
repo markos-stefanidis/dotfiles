@@ -23,11 +23,11 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 400px;
-    width: 600px;
-    border: 0px;
-    border-radius: 5px;
-    border-color: @border-col;
+    height: 500px;
+    width: 800px;
+    border: 0.16em;
+    border-radius: 0.5em;
+    border-color: @selected-col;
     background-color: @bg-col;
     padding: 0px 0px 0px 0px;
     fullscreen: false;

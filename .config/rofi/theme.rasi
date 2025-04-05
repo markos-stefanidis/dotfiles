@@ -51,7 +51,7 @@ window {
 	transparency: "screenshot";
 	width: 800;
 	padding: 0px;
-	border:  0px;
+  border: 0.16em solid #A7C080;
 	color: @black;
 	background-color: @transparent;
 	spacing: 0;
