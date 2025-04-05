@@ -1,0 +1,201 @@
+;; Workspace Widget
+(defvar revealWorkspace0 false) ;; Default Value for workspace revealer
+(defvar revealWorkspace1 false) ;; Default Value for workspace revealer
+(deflisten workspaces :initial "" "scripts/workspace.py") ;; Listen for changes in workspaces
+
+(defwidget workspaceWidget [reveal monitor]
+  (eventbox
+    :onhover     "eww update revealWorkspace${monitor}=true" ;; Reveal workspaces on hover
+    :onhoverlost "eww update revealWorkspace${monitor}=false"
+    (box 
+      :class "workspaceWidget widget"
+      :space-evenly false
+      :orientation "h"
+      ;; This is the focused workspace
+      (label
+        :class "workspaceFocused"
+        :text "${workspaces[monitor].focused}"
+      )
+      ;; Every other workspace appears here
+      (revealer
+        :class "workspaceRevealer"
+        :transition "slideleft"
+        :duration "0.5s"
+        :reveal reveal
+        (box
+          (for i in {workspaces[monitor].workspaces}
+            (button
+              :class {i.status} 
+              :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor ${i.id}"
+              "${i.name}")))))))
+
+
+;; Client widget
+(defvar revealClientLabel false)
+(deflisten clients :initial "" "scripts/clients.py") ;; Listen for changes in clients
+
+(defwidget clientWidget [monitor]
+  (eventbox
+    :class "clientWidget widget"
+    :onhover     "eww update revealClientLabel=true"
+    :onhoverlost "eww update revealClientLabel=false"
+    (box
+      :space-evenly false
+      :halign "center"
+      :orientation "h"
+      :visible {clients[monitor] != ""}
+      (for i in {clients[monitor]}
+        (button
+          :onclick "hyprctl dispatch focuswindow pid:${i.pid}"
+          :class "clientIcon"
+          (box
+             :space-evenly false
+             :halign "center"
+             :orientation "h"
+            (image
+              :path "${i.icon}"
+              :image-width "20"
+            )
+
+            (revealer
+              :class "clientLabelRevealer"
+              :transition "slideright"
+              :duration "0.5s"
+              ;; :reveal {revealClientLabel || "{$i.active == true}"}
+              ;; :reveal {i.active}
+              :reveal revealClientLabel
+              (label
+                :class "clientLabel"
+                :text "${i.title}"
+                :halign "left"
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+;; (defwidget clientWidget [monitor]
+;;   (box
+;;       (for i in {clients[monitor]}
+;;         (button
+;;           :onclick "hyprctl dispatch focuswindow pid:${i.pid}"
+;;           :class "clientIcon"
+;;           (box
+;;             :orientation "h"
+;;             :space-evenly false
+;;             (image
+;;               :path "${i.icon}"
+;;               :image-width "20")
+;;             (label
+;;               :class "clientLabel"
+;;               :text "${i.title}")
+;; )))))
+
+
+;; System Tray
+(defwidget systrayWidget []
+  (box :class "systrayWidget widget"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (systray :pack-direction "ttb"
+             :icon-size 24
+             :spacing 10)))
+
+;; Date Widget
+(defpoll date :interval "1m"
+  "scripts/date")
+
+(defwidget dateWidget []
+  (box :class "clockDateWidget widget"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (label
+        :class "icon"
+        :text "  ")
+    (label
+        :class "clockDate"
+        :text "${date}")))
+
+;; Clock widget
+(defpoll time :interval "1m"
+  "scripts/clock")
+
+(defwidget clockWidget []
+  (box :class "clockDateWidget widget"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    (label
+        :class "icon"
+        :text "  ")
+    (label
+        :class "clockDate"
+        :text "${time}")))
+
+;; Define widgets on the left
+(defwidget left [reveal monitor]
+	(box 
+    :orientation "h" 
+    :space-evenly false  
+    :halign "start"
+    :class "leftModules"
+    (workspaceWidget :reveal reveal :monitor monitor)))
+
+(defwidget center [monitor]
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "centerModules"
+    (clientWidget :monitor monitor)))
+
+(defwidget right [monitor]
+	(box 
+    :orientation "h" 
+    :space-evenly false  
+    :halign "end"
+    :class "rightModules"
+    (systrayWidget)
+    (dateWidget)
+    (clockWidget)))
+
+(defwidget bar [reveal monitor]
+  (box :class "bar"
+    (left :reveal reveal :monitor monitor)
+    (center :monitor monitor)
+    (right :monitor monitor)))
+
+;; Define bar on monitor 0
+(defwindow bar0 []
+  :exclusive true
+  :monitor 0
+  :geometry (geometry 
+    :x "15px"
+    :y "9px"
+    :width "98%"
+    :height "20px"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar :reveal revealWorkspace0 :monitor 0)
+)
+
+;; Define bar on monitor 1
+(defwindow bar1 []
+  :exclusive true
+  :monitor 1
+  :geometry (geometry 
+    :x "15px"
+    :y "9px"
+    :width "98%"
+    :height "20px"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar :reveal revealWorkspace1 :monitor 1)
+)

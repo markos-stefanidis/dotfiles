@@ -1,0 +1,512 @@
+[
+  {
+    "monitorID": 0,
+    "focused": "\uf1bc ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf120 ",
+    "workspace": [
+      {
+        "id": 2,
+        "name": 2,
+        "status": "active"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf269 ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "active"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf120 ",
+    "workspace": [
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf120 ",
+    "workspace": [
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "active"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf269 ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf1bc ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "active"
+      },
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf269 ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf1bc ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf120 ",
+    "workspace": [
+      {
+        "id": 2,
+        "name": 2,
+        "status": "active"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf1bc ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf269 ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "active"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+][
+  {
+    "monitorID": 0,
+    "focused": "\uf1bc ",
+    "workspace": [
+      {
+        "id": 1,
+        "name": 1,
+        "status": "other"
+      },
+      {
+        "id": 2,
+        "name": 2,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "other"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "other"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "other"
+      }
+    ]
+  },
+  {
+    "monitorID": 1,
+    "focused": "\uf120 ",
+    "workspace": [
+      {
+        "id": 2,
+        "name": 2,
+        "status": "active"
+      },
+      {
+        "id": 3,
+        "name": 3,
+        "status": "other"
+      },
+      {
+        "id": 4,
+        "name": 4,
+        "status": "other"
+      },
+      {
+        "id": 5,
+        "name": 5,
+        "status": "active"
+      },
+      {
+        "id": 6,
+        "name": 6,
+        "status": "active"
+      },
+      {
+        "id": 7,
+        "name": 7,
+        "status": "active"
+      }
+    ]
+  }
+]

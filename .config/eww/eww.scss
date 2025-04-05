@@ -1,0 +1,148 @@
+$bg-color: #1E2326;
+$bg-widget: #272E33;
+$bg-active: #DBBC7F;
+$bg-inactive: #7A8478;
+$bg-other: #7FBBB3;
+
+$fg-color: #D3C6AA;
+$fg-focus: #A7C080;
+$fg-active: #DBBC7F;
+$fg-inactive: #7A8478;
+$fg-other: #7FBBB3;
+
+*{
+  background-color: rgba(0,0,0,0);
+  font-family: "Ubuntu Mono Nerd Font";
+  font-weight: bold;
+  font-size: 20px;
+}
+
+menu {
+  padding-top: 5px;
+  background-color: $bg-color;
+  color: $fg-color;
+
+  menuitem {
+    border-radius: 5px;
+    padding: 8px 12px;
+  }
+  menuitem:hover {
+    background-color: $bg-active;
+    color: $bg-color;
+  }
+}
+
+.bar {
+  background-color: $bg-color;
+  border-radius: 20px;
+}
+
+.icon {
+  padding-top: 2px;
+  font-size: 20px;
+  color: $fg_active;
+}
+
+.widget {
+  border-radius: 20px;
+  background-color: $bg-widget;
+  color: $fg-color;
+}
+
+.systrayWidget {
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.clockDateWidget {
+  margin-left: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.clockDate {
+  font-size: 23px;
+  color: $fg-color;
+}
+
+.clientWidget {
+  font-size: 18px;
+  /* padding-left: 15px; */
+  border-radius: 20px;
+  min-width: 37px;
+}
+
+.clientIcon {
+  padding : 0px 0px 0px 0px;
+  font-size: inherit;
+  color: $fg-focus;
+  /* margin-left: 2px; */
+}
+
+.clientLabel {
+  background-color: $bg-widget;
+  border-radius: 20px;
+}
+
+.clientLabelRevealer {
+  padding-left: 10px;
+  padding-right: 2px;
+}
+
+.workspaceWidget {
+  font-size: 18px;
+  padding-left: 15px;
+  border-radius: 20px;
+  min-width: 37px;
+}
+
+.workspaceRevealer {
+  padding-left: 10px;
+  padding-right: 2px;
+}
+
+.workspaceWidget {
+  border-radius: 20px;
+  background-color: $bg-widget;
+  color: $fg-color;
+}
+
+.workspaceFocused {
+  font-size: inherit;
+  color: $fg-focus;
+  margin-left: 2px;
+}
+
+.workspaceActive {
+  color: $fg-active;
+  border-radius: 50%;
+}
+
+.workspaceActive:hover {
+  /* all: inherit; */
+  color: $fg-active;
+}
+
+.workspaceOther {
+  /* all: inherit; */
+  color: $fg-other;
+  border-radius: 50%;
+}
+
+.other:hover {
+  /* all: inherit; */
+  color: $fg-other;
+}
+
+.workspaceInactive {
+  /* all: inherit; */
+  color: $fg-inactive;
+  border-radius: 50%;
+}
+
+.workspaceInactive:hover {
+  /* all: inherit; */
+  color: $fg-inactive;
+}

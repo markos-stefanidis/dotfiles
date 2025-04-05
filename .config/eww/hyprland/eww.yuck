@@ -1,0 +1,77 @@
+(defvar revealTest false)
+(deflisten workspaces "scripts/workspace")
+
+(defwidget revealWidget []
+  (eventbox
+    :onhover "eww update revealTest=true"
+    :onhoverlost "eww update revealTest=false"
+    (box
+      (label
+        :text "hidden"
+      )
+      (revealer
+        :transition "crossfade"
+        :reveal revealTest
+        :duration "1s"
+        (label
+          :text "revealed"
+        )
+      )
+    )
+  )
+)
+
+
+;; Switch workspaces with left-click
+(defwidget workspaceWidget [monitor]
+  (eventbox
+    (box :class "workspaces"
+      (for i in {workspaces[monitor].workspaces}
+        (button
+          :class {i.status} 
+          :onclick "hyprctl dispatch workspace ${i.id}"
+          "${i.name}")))))
+
+;; Define widgets on the left
+(defwidget left [monitor]
+	(box 
+    :orientation "h" 
+    :space-evenly false  
+    :halign "start"
+    :class "left_modules"
+    (workspaceWidget :monitor monitor)
+    (revealWidget)))
+
+(defwidget bar [monitor]
+  (box :class "bar"
+    (left :monitor monitor)))
+
+;; Define bar on monitor 0
+(defwindow bar0 []
+  :exclusive true
+  :monitor 0
+  :geometry (geometry 
+    :x "15px"
+    :y "9px"
+    :width "98%"
+    :height "20px"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar :monitor 0)
+)
+
+;; Define bar on monitor 1
+(defwindow bar1 []
+  :exclusive true
+  :monitor 1
+  :geometry (geometry 
+    :x "15px"
+    :y "9px"
+    :width "98%"
+    :height "20px"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar :monitor 1)
+)

@@ -1,0 +1,17 @@
+$bg-color: #1E2326;
+$bg-widget: #272E33;
+$bg-active: #DBBC7F;
+$bg-inactive: #7A8478;
+$bg-other: #7FBBB3;
+
+$fg-color: #D3C6AA;
+$fg-focus: #A7C080;
+$fg-active: #DBBC7F;
+$fg-inactive: #7A8478;
+$fg-other: #7FBBB3;
+
+.Bar {
+  background-color: $bg-color;
+  border-radius: 20px;
+  margin: 20px;
+}

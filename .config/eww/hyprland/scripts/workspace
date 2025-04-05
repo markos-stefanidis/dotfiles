@@ -1,0 +1,61 @@
+#! /bin/bash
+
+#define icons for workspaces 1-9
+ic=(" " " " " " " " "󰞍 " "󰊗 " "") 
+
+workspaces() {
+  monitors=$1
+  workspaces=$2
+  final=""
+
+  for (( monitor=0; monitor<$monitors; monitor++ )); do
+    active_workspaces=$(echo $workspaces | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.monitorID == ($monitorID | tonumber)) | .id')
+
+    workspaces_other_monitors=$(echo $workspaces | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.monitorID != ($monitorID | tonumber)) | .id')
+
+    focused_workspace=$(hyprctl -j monitors | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.id == ($monitorID | tonumber)) | .activeWorkspace.id')
+
+    result=""
+
+    for i in ${!ic[@]}; do
+      id=$(($i + 1))
+
+      if [[ $id == $focused_workspace ]]; then
+        result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"focused\"},"
+      elif echo "$active_workspaces" | grep -q "$id"; then
+        result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"active\"},"
+      elif ! echo "$workspaces_other_monitors" | grep -q "$id"; then
+        result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"inactive\"},"
+      fi
+    done
+
+    # Remove the trailing comma from the final output (if any)
+    result=$(echo "$result" | sed 's/,*\r*$//')
+    result="{ \"monitorID\": \"$monitor\", \"workspaces\": [ $result ] },"
+
+    final+=$result
+  done
+
+  final=$(echo "$final" | sed 's/,*\r*$//')
+  final="[$final]"
+  echo $final
+}
+
+previous_workspaces=""
+
+monitors=$(hyprctl monitors | grep Monitor | wc -l)
+while true; do
+  workspaces=$(hyprctl -j workspaces)
+
+  # Only echo if the output has changed
+  if [ "$workspaces" != "$previous_workspaces" ]; then
+    result=$(workspaces $monitors "$workspaces")
+    echo "$result"
+    previous_workspaces="$workspaces"
+  fi
+
+  sleep 0.1
+done

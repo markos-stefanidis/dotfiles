@@ -1,0 +1,37 @@
+$bg-color: #1E2326;
+$fg-color: #D3C6AA;
+$fg-focus: #A7C080;
+$fg-active: #D3C6AA;
+$fg-inactive: #293136;
+
+*{
+  background-color: rgba(0,0,0,0);
+  font-family: "Ubuntu Mono Nerd Font";
+  font-size: 20px;
+}
+
+.bar {
+  background-color: $bg-color;
+  border-radius: 20px;
+}
+
+.workspaces {
+  border: 2px solid $fg-color;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+
+.focused {
+  color: $fg-focus;
+  border-radius: 50%;
+}
+
+.active {
+  color: $fg-active;
+  border-radius: 50%;
+}
+
+.inactive {
+  color: $fg-inactive;
+  border-radius: 50%;
+}

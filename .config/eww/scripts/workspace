@@ -1,0 +1,67 @@
+#! /bin/bash
+
+#define icons for workspaces 1-9
+ic=(" " " " " " "󰈎 " " " "󰞍 " "󰊗 " " ") 
+
+workspaces() {
+  monitors=$1
+  workspaces=$2
+  final=""
+
+  for (( monitor=0; monitor<$monitors; monitor++ )); do
+    active_workspaces=$(echo $workspaces | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.monitorID == ($monitorID | tonumber)) | .id')
+
+    workspaces_other_monitors=$(echo $workspaces | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.monitorID != ($monitorID | tonumber)) | .id')
+
+    focused_workspace=$(hyprctl -j monitors | jq -r --arg monitorID "$monitor"\
+        '.[] | select(.id == ($monitorID | tonumber)) | .activeWorkspace.id')
+
+    result=""
+
+    # echo "Monitor: $monitor"
+    # echo "Focused Workspace: $focused_workspace"
+
+    for i in ${!ic[@]}; do
+      id=$(($i + 1))
+
+      if [[ $id != $focused_workspace ]]; then
+        # echo $id
+        # result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"focused\"},"
+        if echo "$active_workspaces" | grep -q "$id"; then
+          result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"active\"},"
+        elif ! echo "$workspaces_other_monitors" | grep -q "$id"; then
+          result+="{\"id\": $id, \"name\": \"${ic[$i]}\", \"status\":\"inactive\"},"
+        fi
+      fi
+    done
+
+    # Remove the trailing comma from the final output (if any)
+    result=$(echo "$result" | sed 's/,*\r*$//')
+    result="{ \"monitorID\": \"$monitor\", \"focused\": \"${ic[$(($focused_workspace - 1))]}\", \"workspaces\": [ $result ] },"
+
+    final+=$result
+  done
+
+  final=$(echo "$final" | sed 's/,*\r*$//')
+  final="[$final]"
+  echo $final
+}
+
+previous_monitors=""
+
+n_monitors=$(hyprctl monitors | grep Monitor | wc -l)
+while true; do
+  monitors=$(hyprctl monitors)
+
+  # Only echo if the output has changed
+  if [ "$monitors" != "$previous_monitors" ]; then
+    workspaces=$(hyprctl -j workspaces)
+    result=$(workspaces $n_monitors "$workspaces")
+    echo "$result"
+    previous_monitors="$monitors"
+  fi
+
+  sleep 0.1
+done
