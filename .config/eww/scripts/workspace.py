@@ -32,6 +32,7 @@ def workspace_changed():
 
         # for workspace in hypr_workspaces:
         for i in range(len(ws_icons)):
+            print(i)
             workspace = instance.get_workspace_by_id(i+1)
 
             if (workspace.id == monitor.active_workspace_id):
@@ -55,5 +56,5 @@ def workspace_changed():
 
 
 workspace_changed()
-instance.signal_active_workspace_changed.connect(callback_workspace)
+instance.signals.workspace.connect(callback_workspace)
 instance.watch()
