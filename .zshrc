@@ -46,8 +46,8 @@ export PATH=$PATH:$HOME/.config/emacs/bin
 export PATH=$PATH:$HOME/.local/bin
 export QT_QPA_PLATFORMTHEME=qt5ct
 export MARKOS_ROOT=/home/markos/repos/6502.bak
+alias svn='python3 ~/repos/svn-wrapper/python/svn_wrapper.py'
 
 #---- FZF ---
 eval "$(fzf --zsh)"
 
-alias svn='python3 ~/repos/svn-wrapper/python/svn_wrapper.py'
