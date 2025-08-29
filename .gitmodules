@@ -4,3 +4,9 @@
 [submodule ".zplug"]
 	path = .zplug
 	url = https://github.com/zplug/zplug
+[submodule ".tmux/plugins/vim-tmux-navigator"]
+	path = .tmux/plugins/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
